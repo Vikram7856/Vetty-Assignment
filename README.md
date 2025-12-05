@@ -1,4 +1,4 @@
-# SQL Questions with Answers (MySQL)
+<img width="661" height="209" alt="Solution Q1" src="https://github.com/user-attachments/assets/ca0bb9ce-9dfd-4531-a762-c330587bec25" /># SQL Questions with Answers (MySQL)
 
 This repository contains SQL interview-style questions and their solutions using MySQL.
 
@@ -69,6 +69,11 @@ WHERE refund_time IS NULL
 GROUP BY months
 ORDER BY months;
 
+<img width="661" height="209" alt="Solution Q1" src="https://github.com/user-attachments/assets/8bb8c384-4b6f-479f-9665-5abd0b66c858" />
+
+
+
+
 ## **Q2.How many stores receive at least 5 orders/transactions in October 2020?**
 
 SELECT
@@ -79,6 +84,10 @@ WHERE DATE_FORMAT(purchase_time, '%Y-%m') = '2020-10'
 GROUP BY store_id
 HAVING COUNT(buyer_id) >= 5;
 
+
+<img width="762" height="244" alt="Solution Q2" src="https://github.com/user-attachments/assets/9f568288-e28f-4846-b578-232c37ad2ef3" />
+
+
 ## **Q3.For each store, what is the shortest interval (in minutes) from purchase to refund time?**
 
 SELECT
@@ -87,6 +96,9 @@ SELECT
 FROM transactions
 WHERE refund_time IS NOT NULL
 GROUP_BY store_id;
+
+
+<img width="696" height="224" alt="Solution Q3" src="https://github.com/user-attachments/assets/f5e88bdc-b3de-48a3-9b64-c1e5293cc8ae" />
 
 ## **Q4.What is the gross_transaction_value of every store’s first order?**
 
@@ -104,6 +116,10 @@ FROM (
     FROM transactions
 ) x
 WHERE rn = 1;
+
+<img width="711" height="225" alt="Solution Q4" src="https://github.com/user-attachments/assets/09ce4331-d200-4e34-b08b-96cee2a92b10" />
+
+
 
 ## **Q5.What is the most popular item name that buyers order on their first purchase?**
 
@@ -129,6 +145,9 @@ FROM (
     LIMIT 1
 ) AS x;
 
+<img width="967" height="220" alt="Solution Q5" src="https://github.com/user-attachments/assets/5a83a35c-96ea-4e4d-a7ee-4e257a7084cf" />
+
+
 ## **Q6. Create a flag in the transaction items table indicating whether the refund can be processed or not.
 
 The refund can only be processed if it happens within 72 hours of purchase time.
@@ -148,6 +167,9 @@ SELECT
         ELSE 'not_processed'
     END AS refund_status
 FROM transactions;
+
+<img width="1049" height="314" alt="Solution Q6" src="https://github.com/user-attachments/assets/3d972315-9337-4a9e-86be-49127f655933" />
+
 
 ## **Q7. Create a rank by buyer_id in the transaction items table and filter for only the second purchase per buyer.
 
@@ -170,6 +192,9 @@ SELECT *
 FROM ranked_purchases
 WHERE rn = 2;
 
+
+<img width="944" height="224" alt="Solution Q7" src="https://github.com/user-attachments/assets/b7303381-052e-4991-81fa-6c871773c2dd" />
+
 ## **Q8. How will you find the second transaction time per buyer (don’t use MIN/MAX; assume multiple transactions exist for each buyer)?
 
 Expected Output: Each buyer’s second transaction timestamp.**
@@ -189,5 +214,6 @@ SELECT
 FROM second_txn
 WHERE rn = 2;
 
+<img width="1204" height="225" alt="Solution Q8" src="https://github.com/user-attachments/assets/69775c35-942f-4c81-9803-6ed5381a6b1e" />
 
 

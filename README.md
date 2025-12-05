@@ -211,10 +211,10 @@ LIMIT 1
 ![Solution_Q5](https://github.com/Vikram7856/Vetty-Assignment/blob/main/Solution_Q5.png)
 
 
-## **Q6. Create a flag in the transaction items table indicating whether the refund can be processed or not.
+## **Q6. Create a flag in the transaction items table indicating whether the refund can be processed or not.?**
 
-The refund can only be processed if it happens within 72 hours of purchase time.
-Expected Output: Only 1 of the 3 refunds should be processed.**
+### The refund can only be processed if it happens within 72 hours of purchase time.
+### Expected Output: Only 1 of the 3 refunds should be processed.
 
 SELECT
 
@@ -245,10 +245,10 @@ FROM transactions;
 ![Solution_Q6](https://github.com/Vikram7856/Vetty-Assignment/blob/main/Solution_Q6.png)
 
 
-## **Q7. Create a rank by buyer_id in the transaction items table and filter for only the second purchase per buyer.
+## **Q7. Create a rank by buyer_id in the transaction items table and filter for only the second purchase per buyer.?**
 
-Ignore refunds.
-Expected Output: Only the second purchase of buyer_id = 3 should appear.**
+### Ignore refunds.
+### Expected Output: Only the second purchase of buyer_id = 3 should appear.
 
 WITH ranked_purchases AS (
 
@@ -279,9 +279,9 @@ WHERE rn = 2;
 
 ![Solution_Q7](https://github.com/Vikram7856/Vetty-Assignment/blob/main/Solution_Q7.png)
 
-## **Q8. How will you find the second transaction time per buyer (don’t use MIN/MAX; assume multiple transactions exist for each buyer)?
+## **Q8. How will you find the second transaction time per buyer (don’t use MIN/MAX; assume multiple transactions exist for each buyer)?**
 
-Expected Output: Each buyer’s second transaction timestamp.**
+### Expected Output: Each buyer’s second transaction timestamp.
 
 WITH second_txn AS (
 

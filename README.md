@@ -1,4 +1,4 @@
-<img width="661" height="209" alt="Solution Q1" src="https://github.com/user-attachments/assets/ca0bb9ce-9dfd-4531-a762-c330587bec25" /># SQL Questions with Answers (MySQL)
+# SQL Questions with Answers (MySQL)
 
 This repository contains SQL interview-style questions and their solutions using MySQL.
 

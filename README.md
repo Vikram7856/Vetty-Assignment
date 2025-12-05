@@ -61,7 +61,6 @@ Below are the full questions and SQL solutions based on the `transactions` and `
 
 ## **Q1. What is the count of purchases per month (excluding refunded purchases)?**
 
-```sql
 SELECT
     DATE_FORMAT(purchase_time, '%Y-%m') AS months,
     COUNT(*) AS purchase_count
@@ -69,4 +68,126 @@ FROM transactions
 WHERE refund_time IS NULL
 GROUP BY months
 ORDER BY months;
+
+## **Q2.How many stores receive at least 5 orders/transactions in October 2020?**
+
+SELECT
+    store_id,
+    COUNT(buyer_id) AS order_count
+FROM transactions
+WHERE DATE_FORMAT(purchase_time, '%Y-%m') = '2020-10'
+GROUP BY store_id
+HAVING COUNT(buyer_id) >= 5;
+
+## **Q3.For each store, what is the shortest interval (in minutes) from purchase to refund time?**
+
+SELECT
+    store_id,
+    MIN(TIMESTAMPDIFF(MINUTE, purchase_time, refund_time)) AS shortest_refund_minutes
+FROM transactions
+WHERE refund_time IS NOT NULL
+GROUP_BY store_id;
+
+## **Q4.What is the gross_transaction_value of every store’s first order?**
+
+SELECT
+    store_id,
+    gross_transaction_value
+FROM (
+    SELECT
+        store_id,
+        purchase_time,
+        gross_transaction_value,
+        ROW_NUMBER() OVER (
+            PARTITION BY store_id ORDER BY purchase_time
+        ) AS rn
+    FROM transactions
+) x
+WHERE rn = 1;
+
+## **Q5.What is the most popular item name that buyers order on their first purchase?**
+
+WITH first_purchases AS (
+    SELECT
+        buyer_id,
+        item_id,
+        ROW_NUMBER() OVER (
+            PARTITION BY buyer_id ORDER BY purchase_time
+        ) AS rn
+    FROM transactions
+)
+SELECT x.item_name
+FROM (
+    SELECT
+        i.item_name,
+        COUNT(*) AS first_purchase_count
+    FROM first_purchases fp
+    JOIN items i ON fp.item_id = i.item_id
+    WHERE fp.rn = 1
+    GROUP BY i.item_name
+    ORDER BY first_purchase_count DESC
+    LIMIT 1
+) AS x;
+
+## **Q6. Create a flag in the transaction items table indicating whether the refund can be processed or not.
+
+The refund can only be processed if it happens within 72 hours of purchase time.
+Expected Output: Only 1 of the 3 refunds should be processed.**
+
+SELECT
+    buyer_id,
+    purchase_time,
+    refund_time,
+    store_id,
+    item_id,
+    gross_transaction_value,
+    CASE
+        WHEN refund_time IS NOT NULL 
+             AND TIMESTAMPDIFF(HOUR, purchase_time, refund_time) <= 72
+        THEN 'processed'
+        ELSE 'not_processed'
+    END AS refund_status
+FROM transactions;
+
+## **Q7. Create a rank by buyer_id in the transaction items table and filter for only the second purchase per buyer.
+
+Ignore refunds.
+Expected Output: Only the second purchase of buyer_id = 3 should appear.**
+
+WITH ranked_purchases AS (
+    SELECT
+        buyer_id,
+        purchase_time,
+        store_id,
+        item_id,
+        gross_transaction_value,
+        ROW_NUMBER() OVER (
+            PARTITION BY buyer_id ORDER BY purchase_time
+        ) AS rn
+    FROM transactions
+)
+SELECT *
+FROM ranked_purchases
+WHERE rn = 2;
+
+## **Q8. How will you find the second transaction time per buyer (don’t use MIN/MAX; assume multiple transactions exist for each buyer)?
+
+Expected Output: Each buyer’s second transaction timestamp.**
+
+WITH second_txn AS (
+    SELECT
+        buyer_id,
+        purchase_time,
+        ROW_NUMBER() OVER (
+            PARTITION BY buyer_id ORDER BY purchase_time
+        ) AS rn
+    FROM transactions
+)
+SELECT
+    buyer_id,
+    purchase_time AS second_transaction_time
+FROM second_txn
+WHERE rn = 2;
+
+
 

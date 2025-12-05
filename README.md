@@ -3,7 +3,6 @@
 
 ## 1. Create Tables and Insert Data
 
-```sql
 USE interview_questions;
 
 -- Drop & Create transactions table

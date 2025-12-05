@@ -62,7 +62,7 @@ WHERE refund_time IS NULL
 GROUP BY months
 ORDER BY months;
 
-![Solution_Q1](https://github.com/Vikram7856/Vetty-Assignment/blob/main/Solution_Q1.jpg)
+![Solution_Q1](https://github.com/Vikram7856/Vetty-Assignment/blob/main/Solution_Q1.png)
 
 ## **Q2.How many stores receive at least 5 orders/transactions in October 2020?**
 

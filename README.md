@@ -85,11 +85,17 @@ SELECT * FROM items;
 ## **Q1. What is the count of purchases per month (excluding refunded purchases)?**
 
 SELECT
-    DATE_FORMAT(purchase_time, '%Y-%m') AS months,
-    COUNT(*) AS purchase_count
+
+DATE_FORMAT(purchase_time, '%Y-%m') AS months,
+
+COUNT(*) AS purchase_count
+    
 FROM transactions
+
 WHERE refund_time IS NULL
+
 GROUP BY months
+
 ORDER BY months;
 
 ![Solution_Q1](https://github.com/Vikram7856/Vetty-Assignment/blob/main/Solution_Q1.png)

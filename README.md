@@ -6,7 +6,9 @@
 USE interview_questions;
 
 -- Drop & Create transactions table
+
 DROP TABLE IF EXISTS transactions;
+
 CREATE TABLE transactions (
     buyer_id INT,
     purchase_time TIMESTAMP,
@@ -17,7 +19,9 @@ CREATE TABLE transactions (
 );
 
 -- Drop & Create items table
+
 DROP TABLE IF EXISTS items;
+
 CREATE TABLE items (
     store_id VARCHAR(5),
     item_id VARCHAR(5),
@@ -26,7 +30,9 @@ CREATE TABLE items (
 );
 
 -- Insert transactions data
+
 INSERT INTO transactions VALUES
+
 (3,  '2019-09-19 21:19:06.544', NULL,                     'a', 'a1', 58.00),
 (12, '2019-12-10 20:10:14.324', '2019-12-15 23:19:06.544','b', 'b2', 475.00),
 (3,  '2020-09-01 23:59:46.561', '2020-09-02 21:22:06.331','f', 'f9', 33.00),
@@ -36,7 +42,9 @@ INSERT INTO transactions VALUES
 (5,  '2019-09-23 12:09:35.542', '2019-09-27 02:55:02.114','g', 'g6', 61.00);
 
 -- Insert items data
+
 INSERT INTO items VALUES
+
 ('a', 'a1', 'pants',    'denim pants'),
 ('a', 'a2', 'tops',     'blouse'),
 ('f', 'f1', 'table',    'coffee table'),
@@ -46,6 +54,7 @@ INSERT INTO items VALUES
 ('b', 'b4', 'earphone', 'airpods');
 
 SELECT * FROM transactions;
+
 SELECT * FROM items;
 
 

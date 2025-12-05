@@ -233,6 +233,7 @@ gross_transaction_value,
 CASE
 WHEN refund_time IS NOT NULL 
 AND TIMESTAMPDIFF(HOUR, purchase_time, refund_time) <= 72
+
 THEN 'processed'
 
 ELSE 'not_processed'
@@ -250,19 +251,30 @@ Ignore refunds.
 Expected Output: Only the second purchase of buyer_id = 3 should appear.**
 
 WITH ranked_purchases AS (
-    SELECT
-        buyer_id,
-        purchase_time,
-        store_id,
-        item_id,
-        gross_transaction_value,
-        ROW_NUMBER() OVER (
+
+SELECT
+
+buyer_id,
+
+purchase_time,
+
+store_id,
+
+item_id,
+
+gross_transaction_value,
+
+ROW_NUMBER() OVER (
             PARTITION BY buyer_id ORDER BY purchase_time
         ) AS rn
-    FROM transactions
+        
+FROM transactions
+
 )
 SELECT *
+
 FROM ranked_purchases
+
 WHERE rn = 2;
 
 ![Solution_Q7](https://github.com/Vikram7856/Vetty-Assignment/blob/main/Solution_Q7.png)
@@ -272,18 +284,28 @@ WHERE rn = 2;
 Expected Output: Each buyer’s second transaction timestamp.**
 
 WITH second_txn AS (
-    SELECT
-        buyer_id,
-        purchase_time,
-        ROW_NUMBER() OVER (
+
+SELECT
+
+buyer_id,
+
+purchase_time,
+
+ROW_NUMBER() OVER (
             PARTITION BY buyer_id ORDER BY purchase_time
         ) AS rn
-    FROM transactions
+        
+FROM transactions
 )
+
 SELECT
-    buyer_id,
-    purchase_time AS second_transaction_time
+
+buyer_id,
+
+purchase_time AS second_transaction_time
+
 FROM second_txn
+
 WHERE rn = 2;
 
 ![Solution_Q8](https://github.com/Vikram7856/Vetty-Assignment/blob/main/Solution_Q8.png)

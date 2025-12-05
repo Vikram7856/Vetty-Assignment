@@ -1,11 +1,11 @@
 # SQL Questions with Answers (MySQL)
 ---
 
-## 1. Create Tables and Insert Data
+## Create Tables and Insert Data
 
 USE interview_questions;
 
-# Drop & Create transactions table
+### Drop & Create transactions table
 DROP TABLE IF EXISTS transactions;
 
 CREATE TABLE transactions 
@@ -25,17 +25,22 @@ gross_transaction_value DECIMAL(10, 2)
 
 );
 
-# Drop & Create items table
+### Drop & Create items table
 DROP TABLE IF EXISTS items;
 
 CREATE TABLE items (
-    store_id VARCHAR(5),
-    item_id VARCHAR(5),
-    item_category VARCHAR(50),
-    item_name VARCHAR(50)
+
+store_id VARCHAR(5),
+
+item_id VARCHAR(5),
+
+item_category VARCHAR(50),
+
+item_name VARCHAR(50)
+
 );
 
-# Insert transactions data
+### Insert transactions data
 INSERT INTO transactions VALUES
 
 (3,  '2019-09-19 21:19:06.544', NULL,                     'a', 'a1', 58.00),
@@ -52,15 +57,21 @@ INSERT INTO transactions VALUES
 
 (5,  '2019-09-23 12:09:35.542', '2019-09-27 02:55:02.114','g', 'g6', 61.00);
 
-# Insert items data
+### Insert items data
 INSERT INTO items VALUES
 
 ('a', 'a1', 'pants',    'denim pants'),
+
 ('a', 'a2', 'tops',     'blouse'),
+
 ('f', 'f1', 'table',    'coffee table'),
+
 ('f', 'f5', 'chair',    'lounge chair'),
+
 ('f', 'f6', 'chair',    'armchair'),
+
 ('d', 'd2', 'jewelry',  'bracelet'),
+
 ('b', 'b4', 'earphone', 'airpods');
 
 SELECT * FROM transactions;

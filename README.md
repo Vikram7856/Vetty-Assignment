@@ -51,9 +51,6 @@ SELECT * FROM items;
 
 
 # SQL Questions and Answers (Q1–Q8)
-
-Below are the full questions and SQL solutions based on the `transactions` and `items` tables.
-
 ---
 
 ## **Q1. What is the count of purchases per month (excluding refunded purchases)?**

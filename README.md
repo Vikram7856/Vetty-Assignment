@@ -10,17 +10,19 @@ DROP TABLE IF EXISTS transactions;
 
 CREATE TABLE transactions 
 (
-    buyer_id INT,
+
+buyer_id INT,
     
-    purchase_time TIMESTAMP,
+purchase_time TIMESTAMP,
     
-    refund_time TIMESTAMP,
+refund_time TIMESTAMP,
+
+store_id VARCHAR(5),
+
+item_id VARCHAR(5),
     
-    store_id VARCHAR(5),
-    
-    item_id VARCHAR(5),
-    
-    gross_transaction_value DECIMAL(10, 2)
+gross_transaction_value DECIMAL(10, 2)
+
 );
 
 # Drop & Create items table

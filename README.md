@@ -1,7 +1,4 @@
 # SQL Questions with Answers (MySQL)
-
-This repository contains SQL interview-style questions and their solutions using MySQL.
-
 ---
 
 ## 1. Create Tables and Insert Data

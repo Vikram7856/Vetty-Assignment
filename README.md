@@ -65,6 +65,9 @@ GROUP BY store_id
 HAVING COUNT(buyer_id) >=5;
 
 
+<img width="762" height="244" alt="Solution Q2" src="https://github.com/user-attachments/assets/b868a5b8-eb2e-4497-8719-96b2cb646a46" />
+
+
 -- 3. For each store, what is the shortest interval (in min) from purchase to refund time? 
 SELECT
     store_id,
@@ -72,6 +75,8 @@ SELECT
 FROM transactions
 WHERE refund_time IS NOT NULL
 GROUP BY store_id;
+
+<img width="696" height="224" alt="Solution Q3" src="https://github.com/user-attachments/assets/964e49a6-a2e7-4172-a8a6-d5c50444f2fc" />
 
 
 -- 4. What is the gross_transaction_value of every store’s first order? 
@@ -87,6 +92,9 @@ FROM (
     FROM transactions
 ) x
 WHERE rn = 1;
+
+<img width="711" height="225" alt="Solution Q4" src="https://github.com/user-attachments/assets/8c88a418-50ca-4a94-8c6f-bc00258da28f" />
+
 
 
 -- 5. What is the most popular item name that buyers order on their first purchase? 
@@ -111,6 +119,9 @@ ORDER BY first_purchase_count DESC
 LIMIT 1
 ) AS x;
 
+<img width="967" height="220" alt="Solution Q5" src="https://github.com/user-attachments/assets/7d78d57f-09cf-4ec0-bd10-2ac98a3353ac" />
+
+
 /*
 6. Create a flag in the transaction items table indicating whether the refund can be processed or not. 
 The condition for a refund to be processed is that it has to happen within 72 of Purchase time. Expected Output: 
@@ -131,6 +142,9 @@ SELECT
         ELSE 'not_processed'
     END AS refund_status
 FROM transactions;
+
+<img width="1049" height="314" alt="Solution Q6" src="https://github.com/user-attachments/assets/8aaeaedb-ef11-46c1-a51c-ff592b960c8a" />
+
 
 /*
 7. Create a rank by buyer_id column in the transaction items table and filter for only the second purchase per buyer. 
@@ -155,6 +169,9 @@ SELECT *
 FROM ranked_purchases
 WHERE rn = 2;
 
+<img width="944" height="224" alt="Solution Q7" src="https://github.com/user-attachments/assets/463385f2-058c-4834-a007-7ef33ee8f937" />
+
+
 /*
 8. How will you find the second transaction time per buyer (don’t use min/max; assume there were more transactions per buyer in the table) 
 Expected Output: Only the second purchase of buyer_id along with a timestamp 
@@ -175,3 +192,6 @@ SELECT
     purchase_time AS second_transaction_time
 FROM second_txn
 WHERE rn = 2;
+<img width="1204" height="225" alt="Solution Q8" src="https://github.com/user-attachments/assets/6dee68e6-6ff4-4a34-ad0b-59f2baca851c" />
+
+

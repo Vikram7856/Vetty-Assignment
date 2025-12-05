@@ -86,9 +86,9 @@ SELECT * FROM items;
 
 SELECT
 
-DATE_FORMAT(purchase_time, '%Y-%m') AS months,
+   DATE_FORMAT(purchase_time, '%Y-%m') AS months,
 
-COUNT(*) AS purchase_count
+   COUNT(*) AS purchase_count
     
 FROM transactions
 
